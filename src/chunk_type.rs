@@ -9,24 +9,30 @@ pub struct ChunkType {
 }
 
 impl TryFrom<[u8; 4]> for ChunkType {
+    // Here’s how to attempt to build a ChunkType from four bytes.
+    // If it’s valid, give me the new struct; if not, i get no fail as it is an unit.
     type Error = ();
 
-    fn try_from(value: [u8; 4]) -> Result<Self, Self::Error> {
+    fn try_from(value: [u8; 4]) -> Result<ChunkType, Self::Error> {
         Ok(ChunkType { bytes: value })
     }
 }
 
 impl FromStr for ChunkType {
-    type Err = Error;
+    type Err = crate::Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
-        if s.chars().any(|value| value.is_numeric()) {
-            Err(Error)
-        } else {
-            Ok(ChunkType {
-                bytes: s.as_bytes().try_into().unwrap(),
-            })
+        if s.len() != 4 {
+            return Err("Chunk type must be exactly 4 bytes".into());
         }
+
+        if s.chars().any(|c| !c.is_ascii_alphabetic()) {
+            return Err("Chunk type must contain only ASCII letters".into());
+        }
+
+        Ok(ChunkType {
+            bytes: s.as_bytes().try_into()?,
+        })
     }
 }
 
