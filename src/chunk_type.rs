@@ -1,7 +1,5 @@
-use std::{
-    fmt::{Display, Error},
-    str::FromStr,
-};
+use crate::Error;
+use std::{fmt::Display, str::FromStr};
 
 #[derive(Debug, Eq, PartialEq)]
 pub struct ChunkType {
@@ -9,9 +7,9 @@ pub struct ChunkType {
 }
 
 impl TryFrom<[u8; 4]> for ChunkType {
-    // Here’s how to attempt to build a ChunkType from four bytes.
-    // If it’s valid, give me the new struct; if not, i get no fail as it is an unit.
-    type Error = ();
+    // Implement the TryFrom trait to convert a [u8; 4] array into a ChunkType.
+    // If the conversion is valid, return a ChunkType; if not, return an error (in this case, just ()).
+    type Error = Error;
 
     fn try_from(value: [u8; 4]) -> Result<ChunkType, Self::Error> {
         Ok(ChunkType { bytes: value })
@@ -19,7 +17,7 @@ impl TryFrom<[u8; 4]> for ChunkType {
 }
 
 impl FromStr for ChunkType {
-    type Err = crate::Error;
+    type Err = Error;
 
     fn from_str(s: &str) -> Result<Self, Self::Err> {
         if s.len() != 4 {
@@ -37,12 +35,11 @@ impl FromStr for ChunkType {
 }
 
 impl Display for ChunkType {
+    // This function defines how to convert ChunkType to a readable string.
     fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        write!(
-            f,
-            "{}",
-            String::from_utf8(self.bytes.try_into().unwrap()).unwrap()
-        )
+        // Convert the bytes [82, 85, 83, 84] to a UTF-8 string ("RUST").
+        // Write that string to the formatter output
+        write!(f, "{}", String::from_utf8(self.bytes.into()).unwrap())
     }
 }
 
