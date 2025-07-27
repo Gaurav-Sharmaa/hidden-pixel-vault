@@ -1,7 +1,6 @@
 use crate::chunk::Chunk;
 use crate::{Error, Result};
 use std::fmt::{Display, Formatter};
-use std::io::Read;
 
 pub struct Png {
     chunks: Vec<Chunk>,
@@ -83,7 +82,9 @@ impl Png {
     }
 
     fn chunk_by_type(&self, chunk_type: &str) -> Option<&Chunk> {
-        self.chunks.iter().find(|c| c.chunk_type().to_string() == chunk_type)
+        self.chunks
+            .iter()
+            .find(|c| c.chunk_type().to_string() == chunk_type)
     }
 
     fn as_bytes(&self) -> Vec<u8> {

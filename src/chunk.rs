@@ -13,6 +13,7 @@ pub struct Chunk {
 }
 
 impl TryFrom<&[u8]> for Chunk {
+    // converts raw PNG chunk bytes into a validated Chunk struct
     type Error = Error;
 
     fn try_from(value: &[u8]) -> Result<Self> {
@@ -21,9 +22,9 @@ impl TryFrom<&[u8]> for Chunk {
         let first4: [u8; 4] = iter
             .by_ref()
             .take(4)
-            .collect::<Vec<u8>>()
-            .as_slice()
-            .try_into()?;
+            .collect::<Vec<u8>>() // ← Must have Vec<u8> here
+            .as_slice() // ← Vec<u8> has .as_slice() method
+            .try_into()?; // ← Convert &[u8] to [u8; 4]
 
         let length = u32::from_be_bytes(first4);
 
@@ -51,7 +52,7 @@ impl TryFrom<&[u8]> for Chunk {
         let calculated_crc = CRC.checksum(&bytes_for_crc);
 
         if calculated_crc != crc {
-            Err(Error::from("Invalid CRC"))
+            Err(Error::from("Invalid CRC : The File might be corrupted or tampered with so be careful using it."))
         } else {
             Ok(Chunk {
                 length,
