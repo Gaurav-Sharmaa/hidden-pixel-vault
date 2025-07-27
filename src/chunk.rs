@@ -3,7 +3,7 @@ use crate::{Error, Result};
 use crc::{CRC_32_ISO_HDLC, Crc};
 use std::fmt::{Display, Formatter};
 
-const CRC: Crc<u32> = Crc::<u32>::new(&CRC_32_ISO_HDLC); // search why we used this CRC_32_ISO_HDLC ?
+const CRC: Crc<u32> = Crc::<u32>::new(&CRC_32_ISO_HDLC); // u32 format is officially req for PNG & it is reliable and fast.
 
 pub struct Chunk {
     length: u32,
@@ -65,7 +65,12 @@ impl TryFrom<&[u8]> for Chunk {
 
 impl Display for Chunk {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
-        write!(f, "{}", self.data_as_string().unwrap())
+        write!(
+            f,
+            "{}",
+            self.data_as_string()
+                .unwrap_or_else(|_| "Invalid UTF-8 data".to_string())
+        )
     }
 }
 
@@ -77,7 +82,7 @@ impl Chunk {
         container
     }
 
-    fn new(chunk_type: ChunkType, data: Vec<u8>) -> Chunk {
+    pub fn new(chunk_type: ChunkType, data: Vec<u8>) -> Chunk {
         Chunk {
             length: data.len() as u32,
             crc: CRC.checksum(Self::get_bytes_for_crc(&chunk_type, &data).as_slice()),
@@ -88,7 +93,7 @@ impl Chunk {
     fn length(&self) -> u32 {
         self.length
     }
-    fn chunk_type(&self) -> &ChunkType {
+    pub fn chunk_type(&self) -> &ChunkType {
         &self.chunk_type
     }
     fn data(&self) -> &[u8] {
@@ -97,10 +102,10 @@ impl Chunk {
     fn crc(&self) -> u32 {
         self.crc
     }
-    fn data_as_string(&self) -> Result<String> {
+    pub fn data_as_string(&self) -> Result<String> {
         Ok(String::from_utf8(self.data().into())?)
     }
-    fn as_bytes(&self) -> Vec<u8> {
+    pub fn as_bytes(&self) -> Vec<u8> {
         let mut container = vec![];
         container.extend(self.length.to_be_bytes());
         container.extend(self.chunk_type.bytes());
