@@ -64,6 +64,7 @@ impl TryFrom<&[u8]> for Chunk {
     }
 }
 
+
 impl Display for Chunk {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
         write!(
