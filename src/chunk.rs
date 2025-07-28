@@ -52,7 +52,9 @@ impl TryFrom<&[u8]> for Chunk {
         let calculated_crc = CRC.checksum(&bytes_for_crc);
 
         if calculated_crc != crc {
-            Err(Error::from("Invalid CRC : The File might be corrupted or tampered with so be careful using it."))
+            Err(Error::from(
+                "Invalid CRC : The File might be corrupted or tampered with so be careful using it.",
+            ))
         } else {
             Ok(Chunk {
                 length,
@@ -63,7 +65,6 @@ impl TryFrom<&[u8]> for Chunk {
         }
     }
 }
-
 
 impl Display for Chunk {
     fn fmt(&self, f: &mut Formatter<'_>) -> std::fmt::Result {
