@@ -96,5 +96,5 @@ If you want to learn more about how a PNG is made and why it was created, you ca
 If you find this project useful, please consider giving it a ⭐️ on [GitHub](https://github.com/yourusername/hidden-pixel-vault).
 
 <div align="center">
-Made with 🦀 by https://github.com/Gaurav-Sharmaa
+Made with 🦀 by | [Gaurav Sharma](https://github.com/Gaurav-Sharmaa)
 </div>
