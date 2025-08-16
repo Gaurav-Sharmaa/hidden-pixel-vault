@@ -1,15 +1,15 @@
 <div align="center">
 
-<h1 style="color: #007acc;">🖼️ Hidden Pixel Vault</h1>
+# 🖼️ Hidden Pixel Vault
 
 
 </div>
 
-<h2 style="color: #007acc;">Overview</h2>
+## Overview
 
 Hidden Pixel Vault is a tool built with Rust that lets you hide secret messages within PNG images. It offers a secure and reliable method for hiding your data in plain sight, without changing how the image looks.
 
-<h3 style="color: #4CAF50;">Why hidden-pixel-vault?</h3>
+### Why hidden-pixel-vault?
 
 This project enables seamless, reversible steganography workflows with a focus on security and data integrity. The core features include:
 
@@ -19,13 +19,13 @@ This project enables seamless, reversible steganography workflows with a focus o
 - **Atomic File Operations**: Ensures safe updates with backup, rollback, and recovery mechanisms.
 - **Chunk Management & Validation**: Handles PNG chunks with integrity checks, supporting advanced image processing workflows.
 
-<h2 style="color: #007acc;">📦 Installation</h2>
+## 📦 Installation
 
-<h3 style="color: #4CAF50;">Prerequisites</h3>
+### Prerequisites
 
 Before you begin, ensure you have the Rust programming language installed. If you don't have it, you can get it from [rust-lang.org](https://www.rust-lang.org/tools/install).
 
-<h3 style="color: #4CAF50;">From Source</h3>
+### From Source
 
 1.  **Clone the repository:**
 
@@ -85,13 +85,13 @@ Before you begin, ensure you have the Rust programming language installed. If yo
       cargo run cleanup path/to/your/image.png
       ```
 
-<h2 style="color: #007acc;">📚 Documentation</h2>
+## 📚 Documentation
 
 If you want to learn more about how a PNG is made and why it was created, you can read about it here:
 
 - [PNG (Portable Network Graphics) Specification, Version 1.2](https://www.libpng.org/pub/png/spec/1.2/PNG-Introduction.html)
 
-<h2 style="color: #007acc;">🌟 Show Your Support</h2>
+## 🌟 Show Your Support
 
 If you find this project useful, please consider giving it a ⭐️ on [GitHub](https://github.com/yourusername/hidden-pixel-vault).
 
