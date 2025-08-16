@@ -1,15 +1,15 @@
 <div align="center">
 
-# 🖼️ Hidden Pixel Vault
+<h1 style="color: #007acc;">🖼️ Hidden Pixel Vault</h1>
 
 
 </div>
 
-## Overview
+<h2 style="color: #007acc;">Overview</h2>
 
 Hidden Pixel Vault is a tool built with Rust that lets you hide secret messages within PNG images. It offers a secure and reliable method for hiding your data in plain sight, without changing how the image looks.
 
-### Why hidden-pixel-vault?
+<h3 style="color: #4CAF50;">Why hidden-pixel-vault?</h3>
 
 This project enables seamless, reversible steganography workflows with a focus on security and data integrity. The core features include:
 
@@ -19,13 +19,13 @@ This project enables seamless, reversible steganography workflows with a focus o
 - **Atomic File Operations**: Ensures safe updates with backup, rollback, and recovery mechanisms.
 - **Chunk Management & Validation**: Handles PNG chunks with integrity checks, supporting advanced image processing workflows.
 
-## 📦 Installation
+<h2 style="color: #007acc;">📦 Installation</h2>
 
-### Prerequisites
+<h3 style="color: #4CAF50;">Prerequisites</h3>
 
 Before you begin, ensure you have the Rust programming language installed. If you don't have it, you can get it from [rust-lang.org](https://www.rust-lang.org/tools/install).
 
-### From Source
+<h3 style="color: #4CAF50;">From Source</h3>
 
 1.  **Clone the repository:**
 
@@ -85,16 +85,16 @@ Before you begin, ensure you have the Rust programming language installed. If yo
       cargo run cleanup path/to/your/image.png
       ```
 
-## 📚 Documentation
+<h2 style="color: #007acc;">📚 Documentation</h2>
 
 If you want to learn more about how a PNG is made and why it was created, you can read about it here:
 
 - [PNG (Portable Network Graphics) Specification, Version 1.2](https://www.libpng.org/pub/png/spec/1.2/PNG-Introduction.html)
 
-## 🌟 Show Your Support
+<h2 style="color: #007acc;">🌟 Show Your Support</h2>
 
 If you find this project useful, please consider giving it a ⭐️ on [GitHub](https://github.com/yourusername/hidden-pixel-vault).
 
 <div align="center">
-Made with 🦀 by [Gaurav Sharma](https://github.com/Gaurav-Sharmaa)
+Made with 🦀 by https://github.com/Gaurav-Sharmaa
 </div>
